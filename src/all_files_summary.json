@@ -1,0 +1,22 @@
+{
+  "backend/main.mo": "Defines an empty Internet Computer actor with no methods or state.",
+  "feature_evidence.json": "Feature evidence report documenting a UI change to replace an English transcription placeholder with a specific French sentence in the desktop/web UI.",
+  "frontend-file-summaries.txt": "Aggregated high-level summaries of all frontend source files, components, hooks, styles, and documentation for quick reference.",
+  "frontend/index.css": "Tailwind-based global CSS defining color tokens, light/dark themes, and base layout styling for the application.",
+  "frontend/index.html": "HTML entry point defining the root element and loading the React application module.",
+  "frontend/QA-CHECKLIST.md": "Detailed manual QA checklist covering speech recognition, notes management, deletion flows, edge cases, and expected results.",
+  "frontend/README.md": "Project documentation describing the VocalNoteOne web app, its features, browser requirements, limitations, and usage instructions.",
+  "frontend/src/App.tsx": "Main React application component handling speech recording, transcription display, notes CRUD actions, modals, and global UI state.",
+  "frontend/src/components/DeleteAllConfirmDialog.tsx": "Modal confirmation dialog component for deleting all notes with cancel and destructive actions.",
+  "frontend/src/components/InlineNotice.tsx": "Reusable inline notification component for displaying success or error messages.",
+  "frontend/src/components/NotesModal.tsx": "Modal component that lists saved notes, formats timestamps, and supports per-note deletion with confirmation.",
+  "frontend/src/hooks/useActor.ts": "Custom React hook that creates and manages an Internet Computer backend actor using identity-aware React Query caching.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Defines a React context, provider, and hook to manage Internet Identity authentication using Dfinity AuthClient, including login/logout, persisted identity loading, and detailed login status flags.",
+  "frontend/src/hooks/useSpeechRecognition.ts": "Implements a React hook wrapping the browser SpeechRecognition/WebKit API to provide continuous French (fr-FR) speech-to-text with interim/final transcripts, auto-restart logic, and robust error handling.",
+  "frontend/src/index.css": "Global Tailwind CSS setup with custom design tokens and extensive layout styles for a centered fixed-size app frame, transcription area, action buttons, notices, and overall app appearance.",
+  "frontend/src/lib/notesStorage.ts": "Provides localStorage-based CRUD utilities for notes, including creation, listing (latest 100), deletion by id, and clearing all notes with basic error handling.",
+  "frontend/src/main.tsx": "Frontend entry point that mounts the React app, wiring React Query and the InternetIdentityProvider before rendering the main App component.",
+  "frontend/src/types/notes.ts": "Defines the Note TypeScript interface with id, content, and ISO timestamp fields.",
+  "frontend/tailwind.config.js": "Tailwind CSS configuration enabling dark mode, custom color tokens via CSS variables, extended theme utilities, animations, and plugins like typography, container queries, and animate.",
+  "project_state.json": "Tracks high-level project metadata, existing features, and pending requests for VocalNoteOne, describing scope, architecture goals, and implemented frontend/auth/speech/notes capabilities."
+}

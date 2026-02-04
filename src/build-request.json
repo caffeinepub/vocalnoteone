@@ -1,0 +1,37 @@
+{
+  "kind": "build_request",
+  "title": "Replace transcription textarea placeholder with accessible French copy",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Update the transcription textarea placeholder text in the desktop UI to a French, simple, readable sentence, replacing the current English placeholder \"Your transcription will appear here...\" with the exact French string: \"Votre transcription apparaîtra ici…\".",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "Remplacer cette phrase par une version 100 % française, simple et lisible",
+          "« Votre transcription apparaîtra ici… »"
+        ]
+      },
+      "acceptanceCriteria": [
+        "In the transcription textarea (frontend/src/App.tsx), the placeholder is no longer \"Your transcription will appear here...\".",
+        "The placeholder displays exactly: \"Votre transcription apparaîtra ici…\" (including the ellipsis character).",
+        "The textarea remains read-only and continues to clearly indicate that transcription text will appear in that area."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify files under frontend/src/components/ui or any frontend immutablePaths listed in SYSTEM_CONTEXT."
+  ],
+  "nonGoals": [
+    "Changing other UI copy or translating unrelated labels/buttons.",
+    "Changing speech recognition behavior or note storage behavior."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

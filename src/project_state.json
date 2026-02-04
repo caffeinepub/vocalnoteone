@@ -1,0 +1,152 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 22,
+  "summary": "VocalNoteOne: application desktop minimaliste de prise de notes vocales 100% hors connexion, prioritairement Windows (Linux compatible si possible), bâtie avec Tauri + Vue 3 (Composition API) et backend Rust. Reconnaissance vocale offline (Windows via SAPI 5.4 COM ou WinRT via windows-rs; Linux via Vosk), transcription temps réel, stockage local SQLite (plugin Tauri SQL), UI fixe 500×700px avec zone de texte + 3 boutons + footer micro, et livrables build/installers + documentation.",
+  "existing_features": [
+    {
+      "id": "IF-1",
+      "title": "Motoko backend canister scaffold",
+      "synonyms": [
+        "backend canister",
+        "Motoko service"
+      ],
+      "description": "Baseline Motoko canister added (main.mo) with generated candid bindings for the frontend.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-2",
+      "title": "React/Vite frontend scaffold with Tailwind + shadcn/ui component library",
+      "synonyms": [
+        "shadcn UI",
+        "Tailwind UI kit"
+      ],
+      "description": "Frontend app scaffolded with Vite/React, Tailwind CSS, and shadcn/ui component set configured and included.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-3",
+      "title": "Internet Identity authentication integration (frontend hooks)",
+      "synonyms": [
+        "II login",
+        "Internet Identity",
+        "auth"
+      ],
+      "description": "Frontend includes hooks/utilities to authenticate via Internet Identity and to create an authenticated canister actor.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-4",
+      "title": "Notes UI with local storage persistence",
+      "synonyms": [
+        "notes",
+        "CRUD notes",
+        "notes storage"
+      ],
+      "description": "Notes feature implemented in the frontend including a modal for viewing/adding notes and a confirmation dialog to delete all notes, persisted via a storage client/local storage helper.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-5",
+      "title": "Speech recognition input hook for note capture",
+      "synonyms": [
+        "speech-to-text",
+        "voice input"
+      ],
+      "description": "Frontend includes a speech recognition hook to support voice-to-text capture for notes.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-6",
+      "title": "Reusable ICP build/deploy template and tooling",
+      "synonyms": [
+        "build-template",
+        "Dockerfile/deploy.sh/icp.yaml",
+        "workspace template"
+      ],
+      "description": "Added/updated a reusable build template (build-template/) including Dockerfile, deploy scripts, icp.yaml, pnpm workspace/package configs, and helper scripts (e.g., prune/resize images) along with frontend lint/tooling configuration for template-based builds.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-transcription-textarea-placeholder-text-in-the-desktop-ui-to-a-french-simple-readable-sentence-replacing-the-current-english-placeholder-your-transcription-will-appear-here-with-the-exact-french-string-votre-transcription-appara-tra-ici",
+      "title": "Update the transcription textarea placeholder text in the desktop UI to a French, simple, readable sentence, replacing the current English placeholder \"Your transcription will appear here...\" with the exact French string: \"Votre transcription apparaîtra ici…\".",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Initialiser le projet VocalNoteOne avec Tauri + Vue 3 (Composition API) et structure de dossiers imposée",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Stockage local SQLite via plugin Tauri SQL (schema notes, emplacement OS, CRUD, suppression totale + individuelle avec confirmations)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Reconnaissance vocale offline + transcription temps réel en français (Windows: SAPI 5.4 COM ou WinRT; Linux: Vosk) avec audio PCM 16kHz mono et nettoyage fichiers temporaires",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Modal 'Voir mes notes' (overlay, liste scrollable, 100 dernières, suppression individuelle, fermeture)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Packaging/livrables: scripts de build optimisés (Cargo release strip/LTO/opt-level=z), installateurs Windows MSI + Linux AppImage/deb, README (prérequis, usage, troubleshooting, crédits Vosk, licence OSS)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Remplacer le placeholder anglais de la zone de transcription par une phrase 100% française, simple et lisible (ex: « Votre transcription apparaîtra ici… »)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Mettre à jour l’UI pour la version PC confort visuel: fenêtre fixe 1000×900, zone de transcription ~75% hauteur, espace minimal (10–20px), boutons larges centrés très bas, footer compact en bas",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "architecturalNotes": [
+    "Frontend is a React + Vite + Tailwind app using shadcn/ui components.",
+    "Authentication is handled via Internet Identity with a dedicated hook and an actor-creation hook for canister calls.",
+    "Notes are persisted client-side via a storage helper (local storage) and presented/edited via modal-based UI components.",
+    "Project includes an ICP build/deploy template (Dockerfile/scripts/icp.yaml) alongside app source.",
+    "Repository now includes a reusable build-template/ workspace with Dockerfile, icp.yaml, deploy.sh, and pnpm workspace/package configuration for repeatable build/deploy workflows.",
+    "Frontend template/tooling includes custom ESLint rules and shared configuration under build-template/src/frontend (e.g., rules around Internet Identity provider usage and query-key bigint safety), plus utility scripts for image pruning/resizing.",
+    "Stack cible: Tauri + Vue.js 3 (Composition API) avec backend Rust (sécurité/performances) et CSS pur.",
+    "Speech-to-text 100% offline en français: Windows via SAPI 5.4 (COM) ou WinRT (windows-rs SpeechRecognizer); Linux via Vosk (modèle fr léger) intégré côté Rust.",
+    "Persistance des notes en SQLite via plugin Tauri SQL, base dans %APPDATA%/VocalNoteOne/notes.db (Windows) et ~/.local/share/VocalNoteOne/notes.db (Linux).",
+    "Contraintes produit: aucune connexion internet, aucun compte, aucun cloud/analytics; performance cible <2s démarrage, <80MB RAM idle, binaire <10MB (hors modèle Vosk).",
+    "Décision UI (version PC confort visuel): fenêtre fixe 1000×900 non redimensionnable, zone de transcription dominante (~75% hauteur), boutons d’action très bas juste au-dessus du footer, footer compact et stable tout en bas (repère visuel).",
+    "Exigence de localisation: interface 100% française, y compris le texte placeholder de la zone de transcription."
+  ],
+  "knownIssues": [
+    "Placeholder de la zone de transcription encore en anglais (« Your transcription will appear here… ») au lieu d’une version française accessible."
+  ],
+  "isFixRequest": true,
+  "gameProjectType": "none",
+  "projectName": "VocalNoteOne",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0,
+  "requiresBackendChanges": false,
+  "requiresFrontendChanges": true
+}

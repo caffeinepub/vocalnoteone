@@ -1,0 +1,12 @@
+{
+  "frontend/src/App.tsx": "Main application component with French-labeled action buttons (\"Enregistrer mes notes\", \"Voir mes notes\", \"Effacer mes notes\"), maximized transcription area with French placeholder text (\"Votre transcription apparaîtra ici…\"), and compact footer with VocalNoteOne branding.",
+  "frontend/src/hooks/useSpeechRecognition.ts": "Custom React hook wrapping Web Speech API with fixed transcript accumulation (separate final/interim buffers), hardened lifecycle management (prevents restart loops and rapid-click errors), proper cleanup on unmount, and in-app error state exposure for unsupported browsers and permission/network errors.",
+  "frontend/src/lib/notesStorage.ts": "Local storage utility functions for CRUD operations on notes (create, list latest 100, delete one, delete all) using browser localStorage with error handling.",
+  "frontend/src/types/notes.ts": "TypeScript interface definition for Note type with id, content, and created_at fields.",
+  "frontend/src/components/NotesModal.tsx": "Modal overlay component (400×500) displaying scrollable list of notes with individual delete buttons, confirmation dialogs, and formatted timestamps.",
+  "frontend/src/components/DeleteAllConfirmDialog.tsx": "Confirmation dialog component for destructive \"delete all notes\" action with cancel (grey) and confirm (red) buttons.",
+  "frontend/src/components/InlineNotice.tsx": "Simple inline notice component supporting both success (green) and error (red) variants for displaying transient feedback messages.",
+  "frontend/src/index.css": "Complete CSS styling with flexible transcription area that fills available space with internal scroll, action buttons positioned directly above footer (no blank space), and compact beige footer (#E8D5B7) with orange mic badge (#FF8C42) featuring relief shadow effect.",
+  "frontend/README.md": "Updated documentation with link to QA-CHECKLIST.md, expanded troubleshooting section covering all common error scenarios, and clearer browser requirements and testing guidance.",
+  "frontend/QA-CHECKLIST.md": "Comprehensive step-by-step manual QA testing checklist covering all primary flows (recording, notes management, deletion), edge cases (unsupported browser, permission denied, no speech, rapid clicks, network errors), persistence, UI/UX validation, and cleanup behavior with explicit expected results for each test."
+}

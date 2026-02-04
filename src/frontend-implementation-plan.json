@@ -1,0 +1,23 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Replace transcription textarea placeholder with accessible French copy",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Replace the transcription textarea placeholder with the exact French string \"Votre transcription apparaîtra ici…\" while keeping the textarea read-only.",
+      "acceptanceCriteria": [
+        "In the transcription textarea (frontend/src/App.tsx), the placeholder is no longer \"Your transcription will appear here...\".",
+        "The placeholder displays exactly: \"Votre transcription apparaîtra ici…\" (including the ellipsis character).",
+        "The textarea remains read-only and continues to clearly indicate that transcription text will appear in that area."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Update the transcription <textarea> placeholder value to the exact French string \"Votre transcription apparaîtra ici…\" (with the ellipsis character) while leaving the textarea readOnly behavior unchanged."
+        }
+      ]
+    }
+  ]
+}

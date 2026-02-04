@@ -1,0 +1,485 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 0.625rem;
+        --background: 1 0 0;
+        --foreground: 0.145 0 0;
+        --card: 1 0 0;
+        --card-foreground: 0.145 0 0;
+        --popover: 1 0 0;
+        --popover-foreground: 0.145 0 0;
+        --primary: 0.205 0 0;
+        --primary-foreground: 0.985 0 0;
+        --secondary: 0.97 0 0;
+        --secondary-foreground: 0.205 0 0;
+        --muted: 0.97 0 0;
+        --muted-foreground: 0.556 0 0;
+        --accent: 0.97 0 0;
+        --accent-foreground: 0.205 0 0;
+        --destructive: 0.577 0.245 27.325;
+        --destructive-foreground: 0.985 0 0;
+        --border: 0.922 0 0;
+        --input: 0.922 0 0;
+        --ring: 0.708 0 0;
+        --chart-1: 0.646 0.222 41.116;
+        --chart-2: 0.6 0.118 184.704;
+        --chart-3: 0.398 0.07 227.392;
+        --chart-4: 0.828 0.189 84.429;
+        --chart-5: 0.769 0.188 70.08;
+        --sidebar: 0.985 0 0;
+        --sidebar-foreground: 0.145 0 0;
+        --sidebar-primary: 0.205 0 0;
+        --sidebar-primary-foreground: 0.985 0 0;
+        --sidebar-accent: 0.97 0 0;
+        --sidebar-accent-foreground: 0.205 0 0;
+        --sidebar-border: 0.922 0 0;
+        --sidebar-ring: 0.708 0 0;
+    }
+
+    * {
+        @apply border-border;
+    }
+    
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, 'Liberation Sans', sans-serif;
+        background: #f5f5f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+}
+
+/* App Container - Centers the 1000x900 frame */
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.app-frame {
+  width: 1000px;
+  height: 900px;
+  max-width: 100%;
+  max-height: 100vh;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Transcription Section - Flexes to fill available space with vertical scroll */
+.transcription-section {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.transcription-textarea {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #CCCCCC;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, 'Liberation Sans', sans-serif;
+  color: #000000;
+  background: #FFFFFF;
+  resize: none;
+  outline: none;
+  font-size: 18px;
+  line-height: 1.6;
+  overflow-y: auto;
+  border-radius: 4px;
+}
+
+.transcription-textarea::placeholder {
+  color: #999999;
+}
+
+/* Inline Notice - minimal space */
+.inline-notice {
+  padding: 8px 20px;
+  text-align: center;
+  font-size: 14px;
+  border-top: 1px solid;
+  flex-shrink: 0;
+}
+
+.inline-notice-success {
+  background: #d4edda;
+  color: #155724;
+  border-color: #c3e6cb;
+}
+
+.inline-notice-error {
+  background: #f8d7da;
+  color: #721c24;
+  border-color: #f5c6cb;
+}
+
+/* Actions Section - Sized to content, positioned directly above footer */
+.actions-section {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  box-sizing: border-box;
+}
+
+.action-button {
+  width: 300px;
+  height: 60px;
+  background: #4A90E2;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, 'Liberation Sans', sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+}
+
+.action-button:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.action-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.action-button.recording {
+  background: #E74C3C;
+}
+
+.button-emoji {
+  font-size: 24px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Footer Section - Compact, stable, and anchored at bottom */
+.footer-section {
+  background: #E8D5B7;
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.app-name {
+  color: #333333;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.mic-circle {
+  width: 50px;
+  height: 50px;
+  background: #FF8C42;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25), inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.mic-emoji {
+  font-size: 24px;
+  line-height: 1;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  width: 400px;
+  height: 500px;
+  background: white;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  padding: 20px;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+.modal-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333333;
+}
+
+.modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.empty-state {
+  text-align: center;
+  color: #666666;
+  padding: 40px 20px;
+  font-size: 14px;
+}
+
+.notes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.note-card {
+  background: white;
+  border: 1px solid #CCCCCC;
+  border-radius: 6px;
+  padding: 12px;
+  position: relative;
+}
+
+.note-content {
+  color: #333333;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+  word-wrap: break-word;
+}
+
+.note-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note-date {
+  font-size: 12px;
+  color: #999999;
+}
+
+.note-delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px;
+  line-height: 1;
+  transition: transform 0.2s;
+}
+
+.note-delete-btn:hover {
+  transform: scale(1.1);
+}
+
+.delete-confirm-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+}
+
+.delete-confirm-box {
+  text-align: center;
+  padding: 16px;
+}
+
+.delete-confirm-box p {
+  margin: 0 0 12px 0;
+  color: #333333;
+  font-size: 14px;
+}
+
+.delete-confirm-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.delete-confirm-cancel,
+.delete-confirm-delete {
+  padding: 6px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.delete-confirm-cancel {
+  background: #CCCCCC;
+  color: #333333;
+}
+
+.delete-confirm-delete {
+  background: #E74C3C;
+  color: white;
+}
+
+.delete-confirm-cancel:hover,
+.delete-confirm-delete:hover {
+  opacity: 0.9;
+}
+
+.modal-footer {
+  padding: 16px;
+  border-top: 1px solid #CCCCCC;
+  display: flex;
+  justify-content: center;
+}
+
+.modal-close-btn {
+  padding: 10px 32px;
+  background: #4A90E2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.modal-close-btn:hover {
+  opacity: 0.9;
+}
+
+/* Confirm Dialog */
+.confirm-dialog {
+  width: 360px;
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.confirm-title {
+  margin: 0 0 12px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333333;
+}
+
+.confirm-message {
+  margin: 0 0 20px 0;
+  font-size: 14px;
+  color: #666666;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.confirm-cancel,
+.confirm-delete {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.confirm-cancel {
+  background: #CCCCCC;
+  color: #333333;
+}
+
+.confirm-delete {
+  background: #E74C3C;
+  color: white;
+}
+
+.confirm-cancel:hover,
+.confirm-delete:hover {
+  opacity: 0.9;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 1040px) {
+  .app-container {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 540px) {
+  .app-container {
+    padding: 0;
+  }
+  
+  .app-frame {
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+  }
+  
+  .action-button {
+    width: 90%;
+    max-width: 300px;
+  }
+  
+  .modal-content {
+    width: 90%;
+    max-width: 400px;
+    height: 80vh;
+    max-height: 500px;
+  }
+  
+  .confirm-dialog {
+    width: 90%;
+    max-width: 360px;
+  }
+}
