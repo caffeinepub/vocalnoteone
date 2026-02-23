@@ -21,6 +21,7 @@ export function useSpeechRecognition(): SpeechRecognitionHook {
   const interimTranscriptRef = useRef('');
   const isStoppingRef = useRef(false);
   const lastStartTimeRef = useRef(0);
+  const sessionCountRef = useRef(0);
 
   const isSupported = 'webkitSpeechRecognition' in window || 'SpeechRecognition' in window;
 
@@ -36,6 +37,7 @@ export function useSpeechRecognition(): SpeechRecognitionHook {
     recognition.continuous = true;
     recognition.interimResults = true;
     recognition.lang = 'fr-FR';
+    recognition.maxAlternatives = 1;
 
     recognition.onresult = (event: any) => {
       let interimTranscript = '';
@@ -91,6 +93,7 @@ export function useSpeechRecognition(): SpeechRecognitionHook {
     return () => {
       if (recognitionRef.current) {
         try {
+          isStoppingRef.current = true;
           recognitionRef.current.stop();
         } catch (e) {
           // Ignore errors during cleanup
@@ -110,6 +113,7 @@ export function useSpeechRecognition(): SpeechRecognitionHook {
     
     setError('');
     isStoppingRef.current = false;
+    sessionCountRef.current += 1;
     
     try {
       recognitionRef.current.start();
@@ -141,7 +145,7 @@ export function useSpeechRecognition(): SpeechRecognitionHook {
   }, []);
 
   const clearTranscript = useCallback(() => {
-    // Fully clear all transcript state
+    // Fully clear all transcript state to ensure clean slate for next recording
     finalTranscriptRef.current = '';
     interimTranscriptRef.current = '';
     setTranscript('');

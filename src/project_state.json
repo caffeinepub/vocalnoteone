@@ -1,26 +1,46 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Note-taking application with voice recording functionality",
-  "architectural_notes": [],
-  "known_issues": [
-    "Voice recording fails after first note is saved - requires page refresh to record additional notes"
+  "summary": "Voice notes app with three blue rectangular buttons for recording, viewing, and deleting notes",
+  "architectural_notes": [
+    "Three distinct blue rectangular buttons at bottom of screen",
+    "Each button: blue background, icon + black/gray text",
+    "Button 1: microphone icon + 'Enregistrer mes notes'",
+    "Button 2: paper icon + 'Voir mes notes'",
+    "Button 3: trash icon + 'Effacer mes notes'"
   ],
+  "known_issues": [],
   "isFixRequest": true,
   "existing_features": [
     {
-      "id": "feature-after-saving-a-note-reset-the-speech-recognition-state-to-allow-immediate-recording-of-another-note-without-requiring-a-page-refresh",
-      "title": "After saving a note, reset the speech recognition state to allow immediate recording of another note without requiring a page refresh",
+      "id": "feature-transform-the-three-action-controls-at-the-bottom-of-the-screen-into-prominent-rectangular-buttons-with-solid-blue-backgrounds-each-button-must-be-a-distinct-blue-rectangle-containing-both-an-icon-and-text-label",
+      "title": "Transform the three action controls at the bottom of the screen into prominent rectangular buttons with solid blue backgrounds. Each button must be a distinct blue rectangle containing both an icon and text label.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-ensure-the-transcript-state-is-properly-cleared-after-each-note-save-operation-to-prevent-duplicate-or-concatenated-content",
-      "title": "Ensure the transcript state is properly cleared after each note save operation to prevent duplicate or concatenated content",
+      "id": "feature-the-first-button-must-display-a-microphone-icon-with-the-text-enregistrer-mes-notes-in-black-or-gray-color-on-the-blue-background",
+      "title": "The first button must display a microphone icon with the text 'Enregistrer mes notes' in black or gray color on the blue background.",
       "reqIds": [
         "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-the-second-button-must-display-a-paper-document-icon-with-the-text-voir-mes-notes-in-black-or-gray-color-on-the-blue-background",
+      "title": "The second button must display a paper/document icon with the text 'Voir mes notes' in black or gray color on the blue background.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-the-third-button-must-display-a-trash-bin-icon-with-the-text-effacer-mes-notes-in-black-or-gray-color-on-the-blue-background",
+      "title": "The third button must display a trash/bin icon with the text 'Effacer mes notes' in black or gray color on the blue background.",
+      "reqIds": [
+        "REQ-4"
       ],
       "version": 1
     }
@@ -28,12 +48,12 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Enable consecutive voice note recordings without requiring page refresh",
+      "summary": "Three blue rectangular buttons with icons and text for recording, viewing, and deleting notes",
       "reqIds": [],
       "status": "pending"
     }
   ],
-  "projectName": "VocalNoteOne",
+  "projectName": "Voice Notes",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

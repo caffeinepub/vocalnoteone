@@ -1,54 +1,93 @@
 {
   "kind": "build_request",
-  "title": "Fix consecutive note saving",
-  "projectName": "VocalNoteOne",
+  "title": "Create three prominent blue rectangular buttons",
+  "projectName": "Voice Notes",
   "priority": "high",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "After saving a note, reset the speech recognition state to allow immediate recording of another note without requiring a page refresh",
+      "text": "Transform the three action controls at the bottom of the screen into prominent rectangular buttons with solid blue backgrounds. Each button must be a distinct blue rectangle containing both an icon and text label.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-user-latest"
+          "msg-user-blue-buttons"
         ],
         "quotes": [
-          "une fois que j'ai enregistré une note si je recommence ça ne fonctionne plus je veux pouvoir enregistrer plusieurs notes les unes après les autres"
+          "Je veux trois vrais boutons rectangulaires bleus, bien visibles, avec un fond bleu plein"
         ]
       },
       "acceptanceCriteria": [
-        "User can save a note and immediately start recording a new note without any manual intervention",
-        "The transcription input field is cleared after each successful save",
-        "The speech recognition listener remains active and ready after note save",
-        "Multiple notes can be recorded consecutively in the same session"
+        "Three separate rectangular buttons are visible at the bottom of the screen",
+        "Each button has a solid blue background fill",
+        "Buttons are clearly distinguishable as clickable rectangular elements",
+        "All three buttons use consistent styling and dimensions"
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Ensure the transcript state is properly cleared after each note save operation to prevent duplicate or concatenated content",
+      "text": "The first button must display a microphone icon with the text 'Enregistrer mes notes' in black or gray color on the blue background.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-user-latest"
+          "msg-user-blue-buttons"
+        ],
+        "quotes": [
+          "Icône micro + 'Enregistrer mes notes'"
         ]
       },
       "acceptanceCriteria": [
-        "The transcript state is empty after a note is saved",
-        "New recordings start with a clean slate",
-        "No residual text from previous recordings appears in the input field"
+        "Microphone icon is visible inside the first blue button",
+        "Text 'Enregistrer mes notes' appears in the button in black or gray",
+        "Icon and text are properly aligned within the button"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "The second button must display a paper/document icon with the text 'Voir mes notes' in black or gray color on the blue background.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-blue-buttons"
+        ],
+        "quotes": [
+          "Icône papier + 'Voir mes notes'"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Paper/document icon is visible inside the second blue button",
+        "Text 'Voir mes notes' appears in the button in black or gray",
+        "Icon and text are properly aligned within the button"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "The third button must display a trash/bin icon with the text 'Effacer mes notes' in black or gray color on the blue background.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-blue-buttons"
+        ],
+        "quotes": [
+          "Icône corbeille + 'Effacer mes notes'"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Trash/bin icon is visible inside the third blue button",
+        "Text 'Effacer mes notes' appears in the button in black or gray",
+        "Icon and text are properly aligned within the button"
       ]
     }
   ],
   "constraints": [
-    "Maintain French language labels in the UI",
-    "Preserve localStorage-based note persistence",
-    "Keep existing speech recognition configuration for French language"
+    "Maintain existing functionality for recording, viewing, and deleting notes",
+    "Keep buttons positioned at the bottom of the screen",
+    "Do not modify backend code or note storage logic"
   ],
   "nonGoals": [
-    "Adding backend persistence",
-    "Changing the UI layout or design",
-    "Modifying the delete functionality",
-    "Adding new features beyond fixing consecutive saves"
+    "Changing the speech recognition functionality",
+    "Modifying the notes modal or deletion confirmation dialogs",
+    "Altering the note counter or transcription display",
+    "Adding new features beyond the button styling changes"
   ],
   "imageRequirements": {
     "required": [],

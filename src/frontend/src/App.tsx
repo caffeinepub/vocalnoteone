@@ -1,17 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSpeechRecognition } from './hooks/useSpeechRecognition';
 import { NotesModal } from './components/NotesModal';
 import { DeleteAllConfirmDialog } from './components/DeleteAllConfirmDialog';
 import { InlineNotice } from './components/InlineNotice';
-import { createNote, deleteAllNotes } from './lib/notesStorage';
+import { createNote, deleteAllNotes, listNotes } from './lib/notesStorage';
+import { Mic, FileText, Trash2, Square } from 'lucide-react';
 
 function App() {
   const [showNotesModal, setShowNotesModal] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [notesVersion, setNotesVersion] = useState(0);
+  const [notesCount, setNotesCount] = useState(0);
 
   const { transcript, isListening, isSupported, error, startListening, stopListening, getFinalTranscript, clearTranscript } = useSpeechRecognition();
+
+  // Update notes count whenever notesVersion changes
+  useEffect(() => {
+    const notes = listNotes();
+    setNotesCount(notes.length);
+  }, [notesVersion]);
 
   const handleRecordClick = () => {
     if (isListening) {
@@ -27,30 +35,24 @@ function App() {
         setTimeout(() => setSuccessMessage(''), 3000);
       }
       
-      // Clear transcript state completely
+      // Clear transcript state completely before restarting
       clearTranscript();
       
       // Restart listening immediately for next note
       // Use a small delay to ensure the previous session is fully stopped
       setTimeout(() => {
         startListening();
-      }, 100);
+      }, 150);
     } else {
       startListening();
     }
-  };
-
-  const handleClearTranscript = () => {
-    clearTranscript();
-    setSuccessMessage('Transcription cleared');
-    setTimeout(() => setSuccessMessage(''), 3000);
   };
 
   const handleDeleteAll = () => {
     deleteAllNotes();
     setNotesVersion(v => v + 1);
     setShowDeleteDialog(false);
-    setSuccessMessage('All notes have been deleted');
+    setSuccessMessage('Toutes les notes ont été supprimées');
     setTimeout(() => setSuccessMessage(''), 3000);
   };
 
@@ -65,7 +67,17 @@ function App() {
   return (
     <div className="app-container">
       <div className="app-frame">
-        {/* Transcription Area */}
+        {/* Note Counter */}
+        <div className="note-counter-section">
+          <div className="note-counter">
+            <span className="note-counter-icon">📝</span>
+            <span className="note-counter-text">
+              {notesCount} {notesCount === 1 ? 'note enregistrée' : 'notes enregistrées'}
+            </span>
+          </div>
+        </div>
+
+        {/* Transcription Area - Expanded */}
         <div className="transcription-section">
           <textarea
             className="transcription-textarea"
@@ -82,55 +94,55 @@ function App() {
         {/* Success Message */}
         {successMessage && <InlineNotice message={successMessage} variant="success" />}
 
-        {/* Action Buttons */}
+        {/* Action Buttons - Three Prominent Blue Rectangular Buttons */}
         <div className="actions-section">
           <button
-            className={`action-button ${isListening ? 'recording' : ''}`}
+            className={`blue-rect-button ${isListening ? 'recording' : ''}`}
             onClick={handleRecordClick}
             disabled={!isSupported}
             aria-label={isListening ? 'Arrêter l\'enregistrement' : 'Enregistrer mes notes'}
           >
             {isListening ? (
               <>
-                <span className="button-emoji">⏹️</span>
-                <span>Arrêter l'enregistrement</span>
+                <Square className="button-icon" size={24} />
+                <span className="button-text">Arrêter l'enregistrement</span>
               </>
             ) : (
               <>
-                <span className="button-emoji">🎤</span>
-                <span>Enregistrer mes notes</span>
+                <Mic className="button-icon" size={24} />
+                <span className="button-text">Enregistrer mes notes</span>
               </>
             )}
           </button>
 
           <button
-            className="action-button"
+            className="blue-rect-button blue-rect-button-secondary"
             onClick={() => setShowNotesModal(true)}
             aria-label="Voir mes notes"
           >
-            <span className="button-emoji">📄</span>
-            <span>Voir mes notes</span>
+            <FileText className="button-icon" size={24} />
+            <span className="button-text">Voir mes notes</span>
           </button>
 
           <button
-            className="action-button"
-            onClick={handleClearTranscript}
+            className="blue-rect-button blue-rect-button-tertiary"
+            onClick={() => setShowDeleteDialog(true)}
             aria-label="Effacer mes notes"
           >
-            <span className="button-emoji">🗑️</span>
-            <span>Effacer mes notes</span>
+            <Trash2 className="button-icon" size={24} />
+            <span className="button-text">Effacer mes notes</span>
           </button>
         </div>
 
-        {/* Footer */}
-        <div className="footer-section">
+        {/* Footer - Compact with VocalNoteOne and Orange Mic */}
+        <footer className="footer-section">
           <div className="footer-content">
-            <div className="app-name">VocalNoteOne</div>
-            <div className="mic-circle">
-              <span className="mic-emoji">🎤</span>
+            <div className="footer-text">VocalNoteOne</div>
+            <div className="footer-mic-badge">
+              <span className="footer-mic-icon">🎤</span>
             </div>
           </div>
-        </div>
+        </footer>
       </div>
 
       {/* Modals */}

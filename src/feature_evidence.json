@@ -2,10 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-after-saving-a-note-reset-the-speech-recognition-state-to-allow-immediate-recording-of-another-note-without-requiring-a-page-refresh",
-      "featureTitle": "After saving a note, reset the speech recognition state to allow immediate recording of another note without requiring a page refresh",
+      "featureId": "feature-transform-the-three-action-controls-at-the-bottom-of-the-screen-into-prominent-rectangular-buttons-with-solid-blue-backgrounds-each-button-must-be-a-distinct-blue-rectangle-containing-both-an-icon-and-text-label",
+      "featureTitle": "Transform the three action controls at the bottom of the screen into prominent rectangular buttons with solid blue backgrounds. Each button must be a distinct blue rectangle containing both an icon and text label.",
       "files": [
-        "frontend/src/App.tsx"
+        "frontend/src/App.tsx",
+        "frontend/src/index.css"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -20,11 +21,10 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-ensure-the-transcript-state-is-properly-cleared-after-each-note-save-operation-to-prevent-duplicate-or-concatenated-content",
-      "featureTitle": "Ensure the transcript state is properly cleared after each note save operation to prevent duplicate or concatenated content",
+      "featureId": "feature-the-first-button-must-display-a-microphone-icon-with-the-text-enregistrer-mes-notes-in-black-or-gray-color-on-the-blue-background",
+      "featureTitle": "The first button must display a microphone icon with the text 'Enregistrer mes notes' in black or gray color on the blue background.",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/hooks/useSpeechRecognition.ts"
+        "frontend/src/App.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -35,6 +35,42 @@
       ],
       "testIds": [
         "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-the-second-button-must-display-a-paper-document-icon-with-the-text-voir-mes-notes-in-black-or-gray-color-on-the-blue-background",
+      "featureTitle": "The second button must display a paper/document icon with the text 'Voir mes notes' in black or gray color on the blue background.",
+      "files": [
+        "frontend/src/App.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-the-third-button-must-display-a-trash-bin-icon-with-the-text-effacer-mes-notes-in-black-or-gray-color-on-the-blue-background",
+      "featureTitle": "The third button must display a trash/bin icon with the text 'Effacer mes notes' in black or gray color on the blue background.",
+      "files": [
+        "frontend/src/App.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
       ],
       "confidence": "high"
     }

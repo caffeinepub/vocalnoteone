@@ -1,43 +1,75 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Fix consecutive note saving",
+  "title": "Create three prominent blue rectangular buttons",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Reset speech recognition state after saving a note to allow immediate recording of another note without page refresh",
+      "summary": "Transform the three action controls at the bottom of the screen into prominent rectangular buttons with solid blue backgrounds",
       "acceptanceCriteria": [
-        "User can save a note and immediately start recording a new note without any manual intervention",
-        "The transcription input field is cleared after each successful save",
-        "The speech recognition listener remains active and ready after note save",
-        "Multiple notes can be recorded consecutively in the same session"
+        "Three separate rectangular buttons are visible at the bottom of the screen",
+        "Each button has a solid blue background fill",
+        "Buttons are clearly distinguishable as clickable rectangular elements",
+        "All three buttons use consistent styling and dimensions"
       ],
       "file_operations": [
         {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "After a note is successfully saved (in the handleSaveNote function), explicitly call the stopListening function from useSpeechRecognition to halt the current recognition session, then immediately call startListening to reinitialize a fresh speech recognition session. Ensure the transcript state is cleared and the input field is reset to empty before restarting. This ensures the speech recognition state is fully reset and ready to capture a new note without requiring a page refresh."
+          "description": "Replace the three action button elements with new rectangular button components featuring solid blue backgrounds. Update the button container styling to display three distinct rectangular buttons with consistent dimensions and spacing."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add or update CSS classes for the three rectangular blue buttons. Define solid blue background color, proper padding, border-radius for rectangular shape, consistent width/height dimensions, and hover states for all three buttons."
         }
       ]
     },
     {
       "id": "REQ-2",
-      "summary": "Clear transcript state after each note save operation to prevent duplicate or concatenated content",
+      "summary": "The first button displays a microphone icon with 'Enregistrer mes notes' text in black or gray on the blue background",
       "acceptanceCriteria": [
-        "The transcript state is empty after a note is saved",
-        "New recordings start with a clean slate",
-        "No residual text from previous recordings appears in the input field"
+        "Microphone icon is visible inside the first blue button",
+        "Text 'Enregistrer mes notes' appears in the button in black or gray",
+        "Icon and text are properly aligned within the button"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/hooks/useSpeechRecognition.ts",
+          "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Ensure the resetTranscript function fully clears both interim and final transcript state. Verify that when stopListening is called followed by startListening, the transcript state does not retain any residual content from the previous session. If necessary, add explicit state clearing logic in the stopListening function to guarantee a clean slate for the next recording."
-        },
+          "description": "Update the first action button to include a microphone icon and the text 'Enregistrer mes notes'. Apply black or gray text color styling and ensure proper horizontal alignment of icon and text within the blue rectangular button."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "The second button displays a paper/document icon with 'Voir mes notes' text in black or gray on the blue background",
+      "acceptanceCriteria": [
+        "Paper/document icon is visible inside the second blue button",
+        "Text 'Voir mes notes' appears in the button in black or gray",
+        "Icon and text are properly aligned within the button"
+      ],
+      "file_operations": [
         {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "In the handleSaveNote function, immediately after saving the note to localStorage and before restarting speech recognition, explicitly invoke the resetTranscript function (if exposed by useSpeechRecognition) or manually set the transcript state to an empty string. This ensures no residual text from the previous recording appears when the user starts a new note."
+          "description": "Update the second action button to include a paper/document icon and the text 'Voir mes notes'. Apply black or gray text color styling and ensure proper horizontal alignment of icon and text within the blue rectangular button."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "The third button displays a trash/bin icon with 'Effacer mes notes' text in black or gray on the blue background",
+      "acceptanceCriteria": [
+        "Trash/bin icon is visible inside the third blue button",
+        "Text 'Effacer mes notes' appears in the button in black or gray",
+        "Icon and text are properly aligned within the button"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Update the third action button to include a trash/bin icon and the text 'Effacer mes notes'. Apply black or gray text color styling and ensure proper horizontal alignment of icon and text within the blue rectangular button."
         }
       ]
     }
