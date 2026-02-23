@@ -2,167 +2,148 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-    :root {
-        --radius: 0.625rem;
-        --background: 1 0 0;
-        --foreground: 0.145 0 0;
-        --card: 1 0 0;
-        --card-foreground: 0.145 0 0;
-        --popover: 1 0 0;
-        --popover-foreground: 0.145 0 0;
-        --primary: 0.205 0 0;
-        --primary-foreground: 0.985 0 0;
-        --secondary: 0.97 0 0;
-        --secondary-foreground: 0.205 0 0;
-        --muted: 0.97 0 0;
-        --muted-foreground: 0.556 0 0;
-        --accent: 0.97 0 0;
-        --accent-foreground: 0.205 0 0;
-        --destructive: 0.577 0.245 27.325;
-        --destructive-foreground: 0.985 0 0;
-        --border: 0.922 0 0;
-        --input: 0.922 0 0;
-        --ring: 0.708 0 0;
-        --chart-1: 0.646 0.222 41.116;
-        --chart-2: 0.6 0.118 184.704;
-        --chart-3: 0.398 0.07 227.392;
-        --chart-4: 0.828 0.189 84.429;
-        --chart-5: 0.769 0.188 70.08;
-        --sidebar: 0.985 0 0;
-        --sidebar-foreground: 0.145 0 0;
-        --sidebar-primary: 0.205 0 0;
-        --sidebar-primary-foreground: 0.985 0 0;
-        --sidebar-accent: 0.97 0 0;
-        --sidebar-accent-foreground: 0.205 0 0;
-        --sidebar-border: 0.922 0 0;
-        --sidebar-ring: 0.708 0 0;
-    }
-
-    * {
-        @apply border-border;
-    }
-    
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, 'Liberation Sans', sans-serif;
-        background: #f5f5f5;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-    }
+:root {
+  --background: oklch(98% 0.01 120);
+  --foreground: oklch(20% 0.02 120);
+  --primary: oklch(55% 0.15 260);
+  --primary-foreground: oklch(98% 0.01 260);
+  --secondary: oklch(92% 0.02 120);
+  --secondary-foreground: oklch(25% 0.02 120);
+  --accent: oklch(65% 0.18 30);
+  --accent-foreground: oklch(98% 0.01 30);
+  --muted: oklch(94% 0.01 120);
+  --muted-foreground: oklch(50% 0.02 120);
+  --destructive: oklch(55% 0.22 25);
+  --destructive-foreground: oklch(98% 0.01 25);
+  --border: oklch(88% 0.02 120);
+  --input: oklch(88% 0.02 120);
+  --ring: oklch(55% 0.15 260);
+  --radius: 0.5rem;
 }
 
-/* App Container - Centers the 1000x900 frame */
+.dark {
+  --background: oklch(15% 0.02 260);
+  --foreground: oklch(95% 0.01 260);
+  --primary: oklch(65% 0.18 260);
+  --primary-foreground: oklch(15% 0.02 260);
+  --secondary: oklch(25% 0.03 260);
+  --secondary-foreground: oklch(95% 0.01 260);
+  --accent: oklch(70% 0.20 30);
+  --accent-foreground: oklch(15% 0.02 30);
+  --muted: oklch(25% 0.02 260);
+  --muted-foreground: oklch(65% 0.02 260);
+  --destructive: oklch(60% 0.25 25);
+  --destructive-foreground: oklch(95% 0.01 25);
+  --border: oklch(30% 0.03 260);
+  --input: oklch(30% 0.03 260);
+  --ring: oklch(65% 0.18 260);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--background);
+  color: var(--foreground);
+}
+
 .app-container {
-  width: 100%;
-  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
-  box-sizing: border-box;
+  padding: 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .app-frame {
-  width: 1000px;
-  height: 900px;
-  max-width: 100%;
-  max-height: 100vh;
+  width: 100%;
+  max-width: 800px;
+  height: 100%;
+  max-height: 900px;
   background: white;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
   overflow: hidden;
 }
 
-/* Transcription Section - Flexes to fill available space with vertical scroll */
 .transcription-section {
   flex: 1;
-  padding: 20px;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  min-height: 0;
+  padding: 2rem;
+  overflow: hidden;
 }
 
 .transcription-textarea {
+  flex: 1;
   width: 100%;
-  height: 100%;
-  border: 1px solid #CCCCCC;
-  padding: 20px;
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, 'Liberation Sans', sans-serif;
-  color: #000000;
-  background: #FFFFFF;
-  resize: none;
-  outline: none;
-  font-size: 18px;
+  padding: 1.5rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 1.1rem;
   line-height: 1.6;
+  resize: none;
+  font-family: inherit;
+  background: #fafafa;
   overflow-y: auto;
-  border-radius: 4px;
+}
+
+.transcription-textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
 }
 
 .transcription-textarea::placeholder {
-  color: #999999;
+  color: #999;
+  font-style: italic;
 }
 
-/* Inline Notice - minimal space */
-.inline-notice {
-  padding: 8px 20px;
-  text-align: center;
-  font-size: 14px;
-  border-top: 1px solid;
-  flex-shrink: 0;
-}
-
-.inline-notice-success {
-  background: #d4edda;
-  color: #155724;
-  border-color: #c3e6cb;
-}
-
-.inline-notice-error {
-  background: #f8d7da;
-  color: #721c24;
-  border-color: #f5c6cb;
-}
-
-/* Actions Section - Sized to content, positioned directly above footer */
 .actions-section {
-  flex-shrink: 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  padding: 16px 20px;
-  box-sizing: border-box;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+  background: white;
+  flex-shrink: 0;
 }
 
 .action-button {
-  width: 300px;
-  height: 60px;
-  background: #4A90E2;
-  color: #FFFFFF;
-  border: none;
-  border-radius: 8px;
-  font-size: 20px;
-  font-weight: 500;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, 'Liberation Sans', sans-serif;
-  cursor: pointer;
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  transition: opacity 0.2s;
-  flex-shrink: 0;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: #f0f0f0;
+  color: #333;
 }
 
-.action-button:hover:not(:disabled) {
-  opacity: 0.9;
+.action-button:hover {
+  background: #e0e0e0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.action-button:active {
+  transform: translateY(0);
 }
 
 .action-button:disabled {
@@ -171,39 +152,40 @@
 }
 
 .action-button.recording {
-  background: #E74C3C;
+  background: #ff4444;
+  color: white;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
 }
 
 .button-emoji {
-  font-size: 24px;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-size: 1.5rem;
 }
 
-/* Footer Section - Compact, stable, and anchored at bottom */
 .footer-section {
   background: #E8D5B7;
-  padding: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 1rem 2rem;
   flex-shrink: 0;
 }
 
 .footer-content {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  gap: 8px;
 }
 
 .app-name {
-  color: #333333;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #333;
 }
 
 .mic-circle {
@@ -214,15 +196,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25), inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .mic-emoji {
-  font-size: 24px;
-  line-height: 1;
+  font-size: 1.5rem;
 }
 
-/* Modal Overlay */
+/* Modal Styles */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -234,88 +215,185 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  padding: 1rem;
 }
 
 .modal-content {
-  width: 400px;
-  height: 500px;
   background: white;
-  border-radius: 8px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 500px;
+  max-height: 600px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
 .modal-header {
-  padding: 20px;
-  border-bottom: 1px solid #CCCCCC;
+  padding: 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .modal-title {
-  margin: 0;
-  font-size: 20px;
-  font-weight: 600;
-  color: #333333;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
 }
 
 .modal-body {
   flex: 1;
   overflow-y: auto;
-  padding: 16px;
+  padding: 1.5rem;
 }
 
 .empty-state {
   text-align: center;
-  color: #666666;
-  padding: 40px 20px;
-  font-size: 14px;
+  color: #999;
+  padding: 2rem;
+  font-style: italic;
 }
 
 .notes-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 1rem;
 }
 
 .note-card {
-  background: white;
-  border: 1px solid #CCCCCC;
-  border-radius: 6px;
-  padding: 12px;
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1rem;
   position: relative;
 }
 
 .note-content {
-  color: #333333;
-  font-size: 14px;
+  font-size: 1rem;
   line-height: 1.5;
-  margin-bottom: 8px;
+  color: #333;
+  margin-bottom: 0.75rem;
+  white-space: pre-wrap;
   word-wrap: break-word;
+  cursor: pointer;
+  transition: background 0.2s;
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
+.note-content:hover {
+  background: #f0f0f0;
 }
 
 .note-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 0.85rem;
+  color: #666;
 }
 
 .note-date {
-  font-size: 12px;
-  color: #999999;
+  font-style: italic;
+}
+
+.note-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.note-edit-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #667eea;
+  transition: all 0.2s;
+  border-radius: 4px;
+}
+
+.note-edit-btn:hover {
+  background: #f0f0f0;
+  transform: scale(1.1);
 }
 
 .note-delete-btn {
-  background: none;
+  background: transparent;
   border: none;
   cursor: pointer;
-  font-size: 16px;
-  padding: 4px;
-  line-height: 1;
+  font-size: 1.2rem;
+  padding: 0.25rem;
   transition: transform 0.2s;
 }
 
 .note-delete-btn:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
+}
+
+.note-edit-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.note-edit-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #667eea;
+  border-radius: 8px;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 80px;
+}
+
+.note-edit-textarea:focus {
+  outline: none;
+  border-color: #764ba2;
+}
+
+.note-edit-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.note-edit-save,
+.note-edit-cancel {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.note-edit-save {
+  background: #667eea;
+  color: white;
+}
+
+.note-edit-save:hover {
+  background: #5568d3;
+  transform: translateY(-1px);
+}
+
+.note-edit-cancel {
+  background: #e0e0e0;
+  color: #333;
+}
+
+.note-edit-cancel:hover {
+  background: #d0d0d0;
+  transform: translateY(-1px);
 }
 
 .delete-confirm-overlay {
@@ -325,161 +403,198 @@
   right: 0;
   bottom: 0;
   background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 6px;
+  z-index: 10;
 }
 
 .delete-confirm-box {
   text-align: center;
-  padding: 16px;
+  padding: 1rem;
 }
 
 .delete-confirm-box p {
-  margin: 0 0 12px 0;
-  color: #333333;
-  font-size: 14px;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #333;
 }
 
 .delete-confirm-actions {
   display: flex;
-  gap: 8px;
+  gap: 0.5rem;
   justify-content: center;
 }
 
 .delete-confirm-cancel,
 .delete-confirm-delete {
-  padding: 6px 16px;
+  padding: 0.5rem 1rem;
   border: none;
-  border-radius: 4px;
-  font-size: 14px;
+  border-radius: 8px;
+  font-weight: 600;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: all 0.2s;
 }
 
 .delete-confirm-cancel {
-  background: #CCCCCC;
-  color: #333333;
+  background: #e0e0e0;
+  color: #333;
+}
+
+.delete-confirm-cancel:hover {
+  background: #d0d0d0;
 }
 
 .delete-confirm-delete {
-  background: #E74C3C;
+  background: #ff4444;
   color: white;
 }
 
-.delete-confirm-cancel:hover,
 .delete-confirm-delete:hover {
-  opacity: 0.9;
+  background: #cc0000;
 }
 
 .modal-footer {
-  padding: 16px;
-  border-top: 1px solid #CCCCCC;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e0e0e0;
   display: flex;
-  justify-content: center;
-}
-
-.modal-close-btn {
-  padding: 10px 32px;
-  background: #4A90E2;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-
-.modal-close-btn:hover {
-  opacity: 0.9;
-}
-
-/* Confirm Dialog */
-.confirm-dialog {
-  width: 360px;
-  background: white;
-  border-radius: 8px;
-  padding: 24px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-}
-
-.confirm-title {
-  margin: 0 0 12px 0;
-  font-size: 18px;
-  font-weight: 600;
-  color: #333333;
-}
-
-.confirm-message {
-  margin: 0 0 20px 0;
-  font-size: 14px;
-  color: #666666;
-}
-
-.confirm-actions {
-  display: flex;
-  gap: 12px;
   justify-content: flex-end;
 }
 
-.confirm-cancel,
-.confirm-delete {
-  padding: 10px 24px;
+.modal-close-btn {
+  padding: 0.75rem 1.5rem;
+  background: #667eea;
+  color: white;
   border: none;
-  border-radius: 6px;
-  font-size: 16px;
+  border-radius: 8px;
+  font-weight: 600;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: all 0.2s;
 }
 
-.confirm-cancel {
-  background: #CCCCCC;
-  color: #333333;
+.modal-close-btn:hover {
+  background: #5568d3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
-.confirm-delete {
-  background: #E74C3C;
+/* Inline Notice Styles */
+.inline-notice {
+  padding: 1rem;
+  margin: 0 2rem 1rem 2rem;
+  border-radius: 8px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.inline-notice.success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.inline-notice.error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* Delete All Confirm Dialog */
+.delete-all-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.delete-all-dialog {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.delete-all-dialog h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.delete-all-dialog p {
+  color: #666;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.delete-all-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.delete-all-cancel,
+.delete-all-confirm {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.delete-all-cancel {
+  background: #e0e0e0;
+  color: #333;
+}
+
+.delete-all-cancel:hover {
+  background: #d0d0d0;
+}
+
+.delete-all-confirm {
+  background: #ff4444;
   color: white;
 }
 
-.confirm-cancel:hover,
-.confirm-delete:hover {
-  opacity: 0.9;
+.delete-all-confirm:hover {
+  background: #cc0000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3);
 }
 
-/* Responsive adjustments for smaller screens */
-@media (max-width: 1040px) {
-  .app-container {
-    padding: 10px;
-  }
-}
-
-@media (max-width: 540px) {
+/* Responsive Design */
+@media (max-width: 768px) {
   .app-container {
     padding: 0;
   }
-  
+
   .app-frame {
-    width: 100%;
-    height: 100vh;
     border-radius: 0;
+    max-height: none;
+    height: 100vh;
   }
-  
+
+  .actions-section {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
   .action-button {
-    width: 90%;
-    max-width: 300px;
+    width: 100%;
   }
-  
+
   .modal-content {
-    width: 90%;
-    max-width: 400px;
-    height: 80vh;
-    max-height: 500px;
-  }
-  
-  .confirm-dialog {
-    width: 90%;
-    max-width: 360px;
+    max-height: 90vh;
   }
 }

@@ -46,6 +46,24 @@ export function deleteNote(id: number): void {
   saveNotes(filtered);
 }
 
+export function updateNote(id: number, newContent: string): Note | null {
+  const notes = getStoredNotes();
+  const noteIndex = notes.findIndex(note => note.id === id);
+  
+  if (noteIndex === -1) {
+    console.error('Note not found:', id);
+    return null;
+  }
+
+  notes[noteIndex] = {
+    ...notes[noteIndex],
+    content: newContent.trim()
+  };
+  
+  saveNotes(notes);
+  return notes[noteIndex];
+}
+
 export function deleteAllNotes(): void {
   try {
     localStorage.removeItem(STORAGE_KEY);

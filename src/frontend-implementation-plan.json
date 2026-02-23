@@ -1,21 +1,43 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Replace transcription textarea placeholder with accessible French copy",
+  "title": "Fix consecutive note saving",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Replace the transcription textarea placeholder with the exact French string \"Votre transcription apparaîtra ici…\" while keeping the textarea read-only.",
+      "summary": "Reset speech recognition state after saving a note to allow immediate recording of another note without page refresh",
       "acceptanceCriteria": [
-        "In the transcription textarea (frontend/src/App.tsx), the placeholder is no longer \"Your transcription will appear here...\".",
-        "The placeholder displays exactly: \"Votre transcription apparaîtra ici…\" (including the ellipsis character).",
-        "The textarea remains read-only and continues to clearly indicate that transcription text will appear in that area."
+        "User can save a note and immediately start recording a new note without any manual intervention",
+        "The transcription input field is cleared after each successful save",
+        "The speech recognition listener remains active and ready after note save",
+        "Multiple notes can be recorded consecutively in the same session"
       ],
       "file_operations": [
         {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Update the transcription <textarea> placeholder value to the exact French string \"Votre transcription apparaîtra ici…\" (with the ellipsis character) while leaving the textarea readOnly behavior unchanged."
+          "description": "After a note is successfully saved (in the handleSaveNote function), explicitly call the stopListening function from useSpeechRecognition to halt the current recognition session, then immediately call startListening to reinitialize a fresh speech recognition session. Ensure the transcript state is cleared and the input field is reset to empty before restarting. This ensures the speech recognition state is fully reset and ready to capture a new note without requiring a page refresh."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Clear transcript state after each note save operation to prevent duplicate or concatenated content",
+      "acceptanceCriteria": [
+        "The transcript state is empty after a note is saved",
+        "New recordings start with a clean slate",
+        "No residual text from previous recordings appears in the input field"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useSpeechRecognition.ts",
+          "operation": "modify",
+          "description": "Ensure the resetTranscript function fully clears both interim and final transcript state. Verify that when stopListening is called followed by startListening, the transcript state does not retain any residual content from the previous session. If necessary, add explicit state clearing logic in the stopListening function to guarantee a clean slate for the next recording."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "In the handleSaveNote function, immediately after saving the note to localStorage and before restarting speech recognition, explicitly invoke the resetTranscript function (if exposed by useSpeechRecognition) or manually set the transcript state to an empty string. This ensures no residual text from the previous recording appears when the user starts a new note."
         }
       ]
     }

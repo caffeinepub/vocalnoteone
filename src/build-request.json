@@ -1,34 +1,54 @@
 {
   "kind": "build_request",
-  "title": "Replace transcription textarea placeholder with accessible French copy",
-  "priority": "normal",
+  "title": "Fix consecutive note saving",
+  "projectName": "VocalNoteOne",
+  "priority": "high",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Update the transcription textarea placeholder text in the desktop UI to a French, simple, readable sentence, replacing the current English placeholder \"Your transcription will appear here...\" with the exact French string: \"Votre transcription apparaîtra ici…\".",
+      "text": "After saving a note, reset the speech recognition state to allow immediate recording of another note without requiring a page refresh",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-user-latest"
         ],
         "quotes": [
-          "Remplacer cette phrase par une version 100 % française, simple et lisible",
-          "« Votre transcription apparaîtra ici… »"
+          "une fois que j'ai enregistré une note si je recommence ça ne fonctionne plus je veux pouvoir enregistrer plusieurs notes les unes après les autres"
         ]
       },
       "acceptanceCriteria": [
-        "In the transcription textarea (frontend/src/App.tsx), the placeholder is no longer \"Your transcription will appear here...\".",
-        "The placeholder displays exactly: \"Votre transcription apparaîtra ici…\" (including the ellipsis character).",
-        "The textarea remains read-only and continues to clearly indicate that transcription text will appear in that area."
+        "User can save a note and immediately start recording a new note without any manual intervention",
+        "The transcription input field is cleared after each successful save",
+        "The speech recognition listener remains active and ready after note save",
+        "Multiple notes can be recorded consecutively in the same session"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Ensure the transcript state is properly cleared after each note save operation to prevent duplicate or concatenated content",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-latest"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The transcript state is empty after a note is saved",
+        "New recordings start with a clean slate",
+        "No residual text from previous recordings appears in the input field"
       ]
     }
   ],
   "constraints": [
-    "Do not modify files under frontend/src/components/ui or any frontend immutablePaths listed in SYSTEM_CONTEXT."
+    "Maintain French language labels in the UI",
+    "Preserve localStorage-based note persistence",
+    "Keep existing speech recognition configuration for French language"
   ],
   "nonGoals": [
-    "Changing other UI copy or translating unrelated labels/buttons.",
-    "Changing speech recognition behavior or note storage behavior."
+    "Adding backend persistence",
+    "Changing the UI layout or design",
+    "Modifying the delete functionality",
+    "Adding new features beyond fixing consecutive saves"
   ],
   "imageRequirements": {
     "required": [],

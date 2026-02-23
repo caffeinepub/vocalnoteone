@@ -1,10 +1,12 @@
 # Specification
 
 ## Summary
-**Goal:** Replace the transcription textarea placeholder in the desktop UI with an accessible, simple French sentence.
+**Goal:** Fix the speech recognition state management to allow consecutive note recordings without page refresh.
 
 **Planned changes:**
-- Update the transcription textarea placeholder in `frontend/src/App.tsx` from "Your transcription will appear here..." to the exact French string: "Votre transcription apparaîtra ici…".
-- Keep the textarea read-only and ensure it still clearly indicates transcription text will appear in that area.
+- Reset speech recognition state after each note save
+- Clear the transcript input field after successful save
+- Ensure the speech recognition listener remains active after note operations
+- Prevent duplicate or concatenated content from previous recordings
 
-**User-visible outcome:** The transcription area shows a French placeholder ("Votre transcription apparaîtra ici…") instead of the current English text, while behaving the same otherwise.
+**User-visible outcome:** Users can record and save multiple notes consecutively in the same session without any manual intervention or page refresh required.

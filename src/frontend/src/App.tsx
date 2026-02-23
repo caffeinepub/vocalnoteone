@@ -11,20 +11,39 @@ function App() {
   const [successMessage, setSuccessMessage] = useState('');
   const [notesVersion, setNotesVersion] = useState(0);
 
-  const { transcript, isListening, isSupported, error, startListening, stopListening, getFinalTranscript } = useSpeechRecognition();
+  const { transcript, isListening, isSupported, error, startListening, stopListening, getFinalTranscript, clearTranscript } = useSpeechRecognition();
 
   const handleRecordClick = () => {
     if (isListening) {
+      // Stop current recording
       stopListening();
-      // Auto-save note if there's content (use final transcript only)
+      
+      // Get final transcript and save if there's content
       const finalText = getFinalTranscript();
       if (finalText) {
         createNote(finalText);
         setNotesVersion(v => v + 1);
+        setSuccessMessage('Note enregistrée avec succès');
+        setTimeout(() => setSuccessMessage(''), 3000);
       }
+      
+      // Clear transcript state completely
+      clearTranscript();
+      
+      // Restart listening immediately for next note
+      // Use a small delay to ensure the previous session is fully stopped
+      setTimeout(() => {
+        startListening();
+      }, 100);
     } else {
       startListening();
     }
+  };
+
+  const handleClearTranscript = () => {
+    clearTranscript();
+    setSuccessMessage('Transcription cleared');
+    setTimeout(() => setSuccessMessage(''), 3000);
   };
 
   const handleDeleteAll = () => {
@@ -36,6 +55,10 @@ function App() {
   };
 
   const handleNoteDeleted = () => {
+    setNotesVersion(v => v + 1);
+  };
+
+  const handleNoteUpdated = () => {
     setNotesVersion(v => v + 1);
   };
 
@@ -91,7 +114,7 @@ function App() {
 
           <button
             className="action-button"
-            onClick={() => setShowDeleteDialog(true)}
+            onClick={handleClearTranscript}
             aria-label="Effacer mes notes"
           >
             <span className="button-emoji">🗑️</span>
@@ -115,6 +138,7 @@ function App() {
         <NotesModal
           onClose={() => setShowNotesModal(false)}
           onNoteDeleted={handleNoteDeleted}
+          onNoteUpdated={handleNoteUpdated}
           notesVersion={notesVersion}
         />
       )}

@@ -1,23 +1,36 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-03T11:09:31.367Z",
+  "generatedAt": "2026-02-23T14:27:54.708Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 1,
-    "implemented": 1,
+    "total": 2,
+    "implemented": 2,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Update the transcription textarea placeholder text in the desktop UI to a French, simple, readable sentence, replacing the current English placeholder \"Your transcription will appear here...\" with the exact French string: \"Votre transcription apparaîtra ici…\".",
+        "summary": "After saving a note, reset the speech recognition state to allow immediate recording of another note without requiring a page refresh",
         "status": "implemented",
         "plannedFiles": [
           "frontend/src/App.tsx"
         ],
         "matchedFiles": [
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Ensure the transcript state is properly cleared after each note save operation to prevent duplicate or concatenated content",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useSpeechRecognition.ts",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useSpeechRecognition.ts",
           "frontend/src/App.tsx"
         ]
       }
@@ -29,6 +42,7 @@
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
     "frontend/src/App.tsx",
+    "frontend/src/hooks/useSpeechRecognition.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",
