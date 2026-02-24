@@ -1,0 +1,39 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Fix recording button state transitions and hover behavior",
+  "requirements": [
+    {
+      "id": "REQ-5",
+      "summary": "Recording button must immediately return to inactive blue state when recording stops",
+      "acceptanceCriteria": [
+        "Recording button displays blue color when not recording",
+        "Recording button transitions from red to blue immediately when stopRecording is called",
+        "Button state accurately reflects isRecording state from useSpeechRecognition hook"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Fix the recording button state management to ensure it immediately transitions from red back to blue when stopRecording is called. Update the button's className logic to properly reflect the isRecording state from useSpeechRecognition hook, ensuring the bg-red-500 class is removed and bg-blue-500 class is applied immediately when isRecording becomes false."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Recording button must maintain full opacity regardless of cursor position",
+      "acceptanceCriteria": [
+        "Button remains fully opaque when cursor hovers over it",
+        "Button remains fully opaque when cursor leaves the button",
+        "No transparency transitions occur on mouse enter or leave events"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Remove any hover-based opacity transitions from the recording button. Ensure the button maintains full opacity at all times by removing hover:opacity-* classes or any CSS that causes transparency changes on mouse events. Verify that only the standard hover:bg-* color transitions remain while opacity stays at 100%."
+        }
+      ]
+    }
+  ]
+}

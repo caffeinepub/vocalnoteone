@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Audio recording application with button state management",
+  "architectural_notes": [
+    "Recording button has blue inactive state and red active state",
+    "Button must maintain opacity on hover/unhover"
+  ],
+  "known_issues": [
+    "Recording button stays red after recording stops instead of returning to blue",
+    "Recording button becomes transparent when cursor leaves"
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-when-recording-stops-the-recording-button-must-immediately-return-to-its-inactive-blue-state-instead-of-staying-red",
+      "title": "When recording stops, the recording button must immediately return to its inactive blue state instead of staying red",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-the-recording-button-must-maintain-its-opacity-and-not-become-transparent-when-the-cursor-leaves-the-button-area",
+      "title": "The recording button must maintain its opacity and not become transparent when the cursor leaves the button area",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [],
+  "projectName": "Fix recording button state transitions and hover behavior",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

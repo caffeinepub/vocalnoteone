@@ -1,0 +1,22 @@
+{
+  "backend/main.mo": "Empty Motoko actor serving as a placeholder backend for the Internet Computer canister.",
+  "feature_evidence.json": "Feature evidence report documenting two UI requirements: recording button state transitions (red to blue on stop) and button opacity maintenance on hover, both implemented in App.tsx with high confidence.",
+  "frontend-file-summaries.txt": "JSON mapping of frontend file paths to detailed summaries covering the React app structure, speech recognition hook, storage utilities, UI components, and styling with emphasis on button states and note management features.",
+  "frontend/index.css": "Tailwind CSS configuration with custom CSS variables for light/dark themes, including color tokens for UI components, charts, and sidebar elements.",
+  "frontend/index.html": "Minimal HTML entry point with root div and module script reference to main.tsx for the React application.",
+  "frontend/QA-CHECKLIST.md": "Comprehensive manual QA testing checklist covering speech recognition flows, notes management (view/edit/delete), edge cases, browser compatibility, and expected results for each test scenario.",
+  "frontend/README.md": "Documentation explaining that VocalNoteOne is a web app (not desktop) using React, Web Speech API, and localStorage, with browser requirements, usage instructions, and technical details about storage and data format.",
+  "frontend/src/App.tsx": "Main React component managing speech recognition state, three prominent blue action buttons (record/view/delete), transcription display, note counter, success/error messages, and modal dialogs with proper recording button state transitions.",
+  "frontend/src/components/DeleteAllConfirmDialog.tsx": "Modal confirmation dialog component for the destructive delete-all-notes action with cancel and confirm buttons.",
+  "frontend/src/components/InlineNotice.tsx": "Simple notification component displaying success or error messages with appropriate styling variants.",
+  "frontend/src/components/NotesModal.tsx": "Modal component displaying scrollable notes list with inline editing (click-to-edit with textarea), individual delete confirmations, formatted timestamps, and note count in header using shadcn ScrollArea.",
+  "frontend/src/hooks/useActor.ts": "Custom React hook that creates and manages an actor instance for backend communication, using Internet Identity for authentication and invalidating dependent queries when the actor changes.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Provides Internet Identity authentication context and hooks for managing user login/logout state, identity persistence, and AuthClient configuration with delegation handling.",
+  "frontend/src/hooks/useSpeechRecognition.ts": "Custom hook that wraps the Web Speech API for continuous speech recognition with French language support, managing transcript state, error handling, and automatic restart on interruption.",
+  "frontend/src/index.css": "Global CSS with Tailwind directives, CSS custom properties for theming (light/dark mode), and component-specific styles for note counter, transcription textarea, and action buttons with blue rectangular styling.",
+  "frontend/src/lib/notesStorage.ts": "LocalStorage-based notes management utility providing CRUD operations (create, list, update, delete) for Note objects with error handling and automatic persistence.",
+  "frontend/src/main.tsx": "Application entry point that sets up React root with QueryClient and InternetIdentityProvider wrappers around the main App component.",
+  "frontend/src/types/notes.ts": "TypeScript interface definition for Note type with id, content, and created_at fields.",
+  "frontend/tailwind.config.js": "Tailwind CSS configuration with custom color scheme using OKLCH color space, extended theme properties, animations, and plugin integrations for typography and container queries.",
+  "project_state.json": "Project metadata tracking known issues with recording button state (stays red after stop, becomes transparent on hover exit) and feature requirements to fix these behaviors."
+}

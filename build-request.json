@@ -1,0 +1,58 @@
+{
+  "kind": "build_request",
+  "title": "Fix recording button state transitions and hover behavior",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-5",
+      "text": "When recording stops, the recording button must immediately return to its inactive blue state instead of staying red",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Le bouton doit redevenir bleu (ou dans son état inactif) dès que l'enregistrement est arrêté"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Recording button displays blue color when not recording",
+        "Recording button transitions from red to blue immediately when stopRecording is called",
+        "Button state accurately reflects isRecording state from useSpeechRecognition hook"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "The recording button must maintain its opacity and not become transparent when the cursor leaves the button area",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Le bouton ne doit pas devenir transparent quand le curseur est enlevé"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Button remains fully opaque when cursor hovers over it",
+        "Button remains fully opaque when cursor leaves the button",
+        "No transparency transitions occur on mouse enter or leave events"
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify the overall layout and positioning of the interface",
+    "Preserve the existing three-button rectangular layout",
+    "Maintain French language labels on buttons"
+  ],
+  "nonGoals": [
+    "Changing button positions or spacing",
+    "Modifying other UI elements beyond the recording button",
+    "Changing the visual design of the view or delete buttons",
+    "Altering the speech recognition functionality"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}
